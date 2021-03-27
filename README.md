@@ -6,3 +6,4 @@ Person API:
 `[GET] /person`  
 `[GET] /person/{id}`  
 `[PUT] /person/{id}`  
+`[DELETE] /person/{id}`

@@ -59,4 +59,12 @@ public class PersonRepository {
             return byId;
         }
     }
+
+    public void delete(Person person) throws PersonNotFoundException {
+        Person byId = this.findById(person.id);
+        if (Objects.isNull(byId)) throw new PersonNotFoundException();
+        this.people = this.people.stream()
+                .filter(person1 -> !Objects.equals(person1.id, person.id))
+                .collect(Collectors.toList());
+    }
 }

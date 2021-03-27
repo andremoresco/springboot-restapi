@@ -36,4 +36,9 @@ public class PersonController {
         return personService.change(id, person);
     }
 
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable("id") Integer id) throws PersonNotFoundException {
+        return personService.delete(id);
+    }
+
 }

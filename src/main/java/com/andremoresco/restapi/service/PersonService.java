@@ -32,4 +32,11 @@ public class PersonService {
         personChanged.id = id;
         return personRepository.save(personChanged);
     }
+
+    public boolean delete(Integer id) throws PersonNotFoundException {
+        Person person = this.get(id);
+        if (person == null) throw new PersonNotFoundException();
+        personRepository.delete(person);
+        return true;
+    }
 }
