@@ -1,5 +1,6 @@
 package com.andremoresco.restapi.service;
 
+import com.andremoresco.restapi.exceptions.PersonNotFoundException;
 import com.andremoresco.restapi.model.Person;
 import com.andremoresco.restapi.respository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,12 @@ public class PersonService {
 
     public Person insert(Person person) {
         return personRepository.insert(person);
+    }
+
+    public Person change(Integer id, Person personChanged) throws PersonNotFoundException {
+        Person person = this.get(id);
+        if (person == null) throw new PersonNotFoundException();
+        personChanged.id = id;
+        return personRepository.save(personChanged);
     }
 }

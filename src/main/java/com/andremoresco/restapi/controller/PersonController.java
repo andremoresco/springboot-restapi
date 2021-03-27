@@ -1,5 +1,6 @@
 package com.andremoresco.restapi.controller;
 
+import com.andremoresco.restapi.exceptions.PersonNotFoundException;
 import com.andremoresco.restapi.model.Person;
 import com.andremoresco.restapi.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class PersonController {
     @PostMapping
     public Person insert(@RequestBody @Valid Person person) {
         return personService.insert(person);
+    }
+
+    @PutMapping("/{id}")
+    public Person change(@PathVariable("id") Integer id, @RequestBody @Valid Person person) throws PersonNotFoundException {
+        return personService.change(id, person);
     }
 
 }
